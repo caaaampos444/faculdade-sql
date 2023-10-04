@@ -1,6 +1,6 @@
-create schema instituicao_sql;
+create schema projeto_faculdade_sql;
 
-use instituicao_sql;
+use projeto_faculdade_sql;
 
 CREATE TABLE Alunos (
     aluno_id INTEGER PRIMARY KEY AUTO_INCREMENT,
@@ -35,20 +35,26 @@ CREATE TABLE Cursos (
     nome_curso TEXT NOT NULL,
     tipo_curso TEXT NOT NULL,
     data_inicio DATE,
-    data_termino DATE
+    data_termino DATE,
+    professor_id integer,
+    foreign key(professor_id) references professores(professor_id)
 );
 
 CREATE TABLE Disciplinas (
     disciplina_id INTEGER PRIMARY KEY,
     nome_disciplina TEXT NOT NULL,
     carga_horaria TIME,
-    codigo_disciplina TEXT
+    codigo_disciplina TEXT,
+    professor_id integer,
+    foreign key(professor_id) references professores(professor_id)
 );
 
 CREATE TABLE Turmas (
     turma_id INTEGER PRIMARY KEY,
     codigo_turma TEXT NOT NULL,
-    ano_escolar NUMERIC
+    ano_escolar NUMERIC,
+    professor_id integer,
+    foreign key(professor_id) references professores(professor_id)
 );
 
 CREATE TABLE Notas (
@@ -201,9 +207,9 @@ select matriculas.data_matricula, matriculas.codigo_matricula,matriculas.valor_m
 from matriculas
 join alunos on matriculas.aluno_id = alunos.aluno_id;
 
+-- essa consulta mostra o valor do material de acordo com seu curso
+select materialdidatico.valor, disciplinas.nome_disciplina
+from materialdidatico
+join disciplinas on materialdidatico.disciplina_id=disciplinas.disciplina_id;
 
-
-
-
-
-
+select * from turmas;
