@@ -213,3 +213,17 @@ from materialdidatico
 join disciplinas on materialdidatico.disciplina_id=disciplinas.disciplina_id;
 
 select * from turmas;
+
+-- essa consulta mostra a média das notas da disciplina "Fundamentos da Educação"
+select avg(notas.nota), disciplinas.nome_disciplina
+from notas
+join disciplinas on notas.disciplina_id=disciplinas.disciplina_id
+where disciplinas.nome_disciplina='Fundamentos da Educação';
+
+select professores.nome_professor, professores.data_contratacao,professores.nacionalidade,professores.estado_civil
+from professores;
+
+-- essa consulta mostra quanto custa o material didático de cada disciplina
+select disciplinas.nome_disciplina, materialdidatico.valor
+from materialdidatico
+join disciplinas on materialdidatico.disciplina_id=disciplinas.disciplina_id
